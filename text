@@ -1,0 +1,11 @@
+api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
+
+
+api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
+
+185bd0b0eda694d9a5d672c24eecba1
+1185bd0b0eda694d9a5d672c24eecba1
+
+https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&​ appid=1185bd0b0eda694d9a5d672c24eecba1
