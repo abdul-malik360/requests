@@ -7,9 +7,10 @@ root.config(bg="#ffba08")
 
 weather = StringVar()
 descript = StringVar()
-location= StringVar()
+location = StringVar()
 city = StringVar()
-temp = StringVar
+temp = StringVar()
+humid = StringVar()
 # label and entry for location
 Label(root, text="Enter Location: ", font=50, height=5, width=25, bg="#ffba08", foreground="#03071e").place(x=20, y=20)
 city_ent = Entry(root)
@@ -31,6 +32,8 @@ weather_location_ans = Label(root, textvariable=location, font=30, bg="#ffba08",
 weather_location_ans.place(x=150, y=500)
 weather_temp_ans = Label(root, textvariable=temp, font=30, bg="#ffba08", height=2)
 weather_temp_ans.place(x=150, y=250)
+weather_humid_ans = Label(root, textvariable=humid, font=30, bg="#ffba08", height=2)
+weather_humid_ans.place(x=150, y=300)
 
 
 def check_weather():
@@ -40,10 +43,8 @@ def check_weather():
     weather.set(data["weather"][0]["main"])
     descript.set(data["weather"][0]["description"])
     location.set(data["sys"]["country"])
-    temp.set(data["weather"]["temp"])
-
-
-
+    temp.set(data["main"]["temp"])
+    humid.set(data["main"]["humidity"])
 
 
 check_btn = Button(root, command=check_weather, cursor="hand2", text="Check Weather", bg="#e85d04", font=2, foreground="#caf0f8", borderwidth=5, width=20)
