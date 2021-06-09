@@ -24,8 +24,10 @@ city_ent.place(x=100, y=100)
 
 def check_weather():
     city_ent.get()
-    response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=" + city_ent.get() +"&appid=9855a903510d5170456e11eb94f17a1b")
+    params1 = {'units': 'Metric'}
+    response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=" + city_ent.get() +"&appid=9855a903510d5170456e11eb94f17a1b", params=params1)
     data = response.json()
+
     weather.set(data["weather"][0]["main"])
     cloud.set(data["weather"][0]["description"])
     location.set(data["sys"]["country"])
@@ -33,13 +35,20 @@ def check_weather():
     humid.set(data["main"]["humidity"])
     wind.set(data["wind"]["speed"])
     tzone.set(data["timezone"])
-    Label(root, text="Temperature", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y= 250)
-    Label(root, text="Humidity", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y= 300)
-    Label(root, text="Wind Speed", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y= 350)
-    Label(root, text="Cloud Cover", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y= 400)
-    Label(root, text="Time Zone", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y= 450)
-    Label(root, text="Country", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y=500)
-    Label(root, text="Weather", font=30, height=2, bg="#ffba08", foreground="#03071e").place(x=20, y=200)
+    temp_lab = Label(root, text="Temperature", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    temp_lab.place(x=20, y= 250)
+    humid_lab = Label(root, text="Humidity", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    humid_lab.place(x=20, y= 300)
+    wind_lab = Label(root, text="Wind Speed", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    wind_lab.place(x=20, y= 350)
+    cloud_lab = Label(root, text="Cloud Cover", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    cloud_lab.place(x=20, y= 400)
+    tzone_lab = Label(root, text="Time Zone", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    tzone_lab.place(x=20, y= 450)
+    location_lab = Label(root, text="Country", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    location_lab.place(x=20, y=500)
+    weather_lab = Label(root, text="Weather", font=30, height=2, bg="#ffba08", foreground="#03071e")
+    weather_lab.place(x=20, y=200)
 
     weather_ans = Label(root, textvariable=weather, font=30, bg="#ffba08", height=2)
     weather_ans.place(x=150, y=200)
@@ -70,6 +79,7 @@ def clear():
     wind.set(" ")
     tzone.set(" ")
     city_ent.delete(0, END)
+
 
 
 clear_btn = Button(root, text="Clear", command=clear,  cursor="hand2", bg="#e85d04", font=2, foreground="#caf0f8", borderwidth=5)
